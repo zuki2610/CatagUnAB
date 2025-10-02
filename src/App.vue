@@ -471,7 +471,22 @@ export default {
 
 @media (max-width: 768px) {
   .stark-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    line-height: 1.1;
+  }
+  
+  .stark-logo {
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  
+  .industries-text {
+    display: block;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
   }
   
   .main-content {
@@ -507,6 +522,8 @@ export default {
   .btn-login,
   .btn-registro {
     width: 100%;
+    font-size: 0.8rem;
+    padding: 0.7rem 1.2rem;
   }
   
   .user-menu {
@@ -522,6 +539,103 @@ export default {
   .btn-perfil,
   .btn-logout {
     width: 100%;
+    font-size: 0.7rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stark-header {
+    padding: 1rem 0 0.8rem;
+  }
+  
+  .stark-title {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+  
+  .stark-logo {
+    display: block;
+    margin-bottom: 0.1rem;
+  }
+  
+  .industries-text {
+    display: block;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .guest-text {
+    font-size: 0.9rem;
+  }
+  
+  .guest-note {
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+  
+  .btn-login,
+  .btn-registro {
+    font-size: 0.75rem;
+    padding: 0.6rem 1rem;
+  }
+  
+  .btn-perfil,
+  .btn-logout {
+    font-size: 0.65rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .user-nombre {
+    font-size: 0.9rem;
+  }
+  
+  .user-empresa {
+    font-size: 0.7rem;
+  }
+  
+  .main-content {
+    padding: 0.8rem;
+  }
+  
+  .auth-navbar {
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .stark-title {
+    font-size: 1.6rem;
+    line-height: 1.3;
+  }
+  
+  .subtitle {
+    font-size: 0.8rem;
+  }
+  
+  .guest-text {
+    font-size: 0.8rem;
+  }
+  
+  .guest-note {
+    font-size: 0.7rem;
+  }
+  
+  .btn-login,
+  .btn-registro {
+    font-size: 0.7rem;
+    padding: 0.5rem 0.8rem;
+  }
+  
+  .main-content {
+    padding: 0.6rem;
+  }
+  
+  .auth-navbar {
+    padding: 0.6rem;
   }
 }
 </style>

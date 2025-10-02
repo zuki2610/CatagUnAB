@@ -533,6 +533,83 @@ export default {
   
   .modal-titulo {
     font-size: 1.8rem;
+    line-height: 1.1;
+  }
+  
+  .stark-logo {
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  
+  .industries-text {
+    display: block;
+  }
+  
+  .form-input {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+  
+  .btn-login,
+  .btn-registro {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.2rem;
+  }
+  
+  .info-titulo {
+    font-size: 1.1rem;
+  }
+  
+  .info-descripcion {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-titulo {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+  
+  .stark-logo {
+    display: block;
+    margin-bottom: 0.1rem;
+  }
+  
+  .industries-text {
+    display: block;
+  }
+  
+  .modal-header {
+    padding: 1rem 1rem 0.8rem;
+  }
+  
+  .modal-content {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .form-input {
+    font-size: 0.85rem;
+    padding: 0.7rem;
+  }
+  
+  .btn-login,
+  .btn-registro {
+    font-size: 0.8rem;
+    padding: 0.7rem 1rem;
+  }
+  
+  .form-label {
+    font-size: 0.8rem;
+  }
+  
+  .checkbox-text {
+    font-size: 0.8rem;
+  }
+  
+  .forgot-password {
+    font-size: 0.8rem;
   }
 }
 </style>

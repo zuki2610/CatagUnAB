@@ -10,7 +10,15 @@
   >
     <div class="tarjeta-header">
       <div class="producto-imagen">
-        <img :src="imagen" :alt="nombre" />
+        <img 
+          :src="imagen" 
+          :alt="nombre" 
+          @error="manejarErrorImagen"
+          @load="imagenCargada = true"
+        />
+        <div v-if="!imagenCargada" class="imagen-placeholder">
+          <span class="placeholder-text">Cargando...</span>
+        </div>
         <div class="imagen-overlay">
           <div class="scan-line"></div>
         </div>
@@ -86,6 +94,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      imagenCargada: false
+    }
+  },
   computed: {
     precioFormateado() {
       return this.precio.toLocaleString()
@@ -110,6 +123,12 @@ export default {
     },
     verDetalle() {
       this.$emit('ver-detalle', this.id)
+    },
+    manejarErrorImagen(event) {
+      console.error(`Error cargando imagen para ${this.nombre}:`, event.target.src)
+      // Establecer una imagen de fallback o mantener el placeholder
+      event.target.style.display = 'none'
+      this.imagenCargada = false
     }
   },
   // Hooks del ciclo de vida
@@ -181,6 +200,29 @@ export default {
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
+  background: linear-gradient(45deg, #0a0a0a, #1a1a2e);
+  display: block;
+}
+
+.imagen-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #0a0a0a, #1a1a2e);
+  border-radius: 15px;
+}
+
+.placeholder-text {
+  color: #00ffff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px #00ffff;
+  animation: pulse 2s infinite;
 }
 
 .tarjeta-producto:hover .producto-imagen img {
@@ -421,6 +463,11 @@ export default {
   100% { left: 100%; }
 }
 
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
 @media (max-width: 768px) {
   .tarjeta-producto {
     padding: 1rem;
@@ -428,6 +475,13 @@ export default {
   
   .producto-imagen {
     height: 150px;
+    min-height: 150px;
+  }
+  
+  .producto-imagen img {
+    min-height: 150px;
+    object-fit: cover;
+    object-position: center;
   }
   
   .producto-nombre {
@@ -441,6 +495,86 @@ export default {
   .producto-acciones {
     flex-direction: column;
     gap: 0.8rem;
+  }
+  
+  .stock-indicator {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .producto-imagen {
+    height: 120px;
+    min-height: 120px;
+  }
+  
+  .producto-imagen img {
+    min-height: 120px;
+  }
+  
+  .tarjeta-producto {
+    padding: 0.8rem;
+    margin: 0;
+  }
+  
+  .producto-nombre {
+    font-size: 1.1rem;
+    line-height: 1.2;
+    word-wrap: break-word;
+  }
+  
+  .producto-descripcion {
+    font-size: 0.85rem;
+    line-height: 1.3;
+  }
+  
+  .precio-valor {
+    font-size: 1.4rem;
+  }
+  
+  .btn-agregar,
+  .btn-detalle {
+    font-size: 0.8rem;
+    padding: 0.7rem 1rem;
+  }
+  
+  .stock-indicator {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .tarjeta-producto {
+    padding: 0.6rem;
+  }
+  
+  .producto-imagen {
+    height: 100px;
+    min-height: 100px;
+  }
+  
+  .producto-imagen img {
+    min-height: 100px;
+  }
+  
+  .producto-nombre {
+    font-size: 1rem;
+  }
+  
+  .producto-descripcion {
+    font-size: 0.8rem;
+  }
+  
+  .precio-valor {
+    font-size: 1.2rem;
+  }
+  
+  .btn-agregar,
+  .btn-detalle {
+    font-size: 0.75rem;
+    padding: 0.6rem 0.8rem;
   }
 }
 </style>

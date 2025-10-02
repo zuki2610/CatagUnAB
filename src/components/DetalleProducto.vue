@@ -10,7 +10,15 @@
 
       <div class="detalle-content">
         <div class="detalle-imagen">
-          <img :src="producto.imagen" :alt="producto.nombre" />
+          <img 
+            :src="producto.imagen" 
+            :alt="producto.nombre" 
+            @error="manejarErrorImagen"
+            @load="imagenCargada = true"
+          />
+          <div v-if="!imagenCargada" class="imagen-placeholder">
+            <span class="placeholder-text">Cargando imagen...</span>
+          </div>
           <div class="imagen-scan">
             <div class="scan-line"></div>
             <div class="scan-line reverse"></div>
@@ -96,6 +104,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      imagenCargada: false
+    }
+  },
   computed: {
     stockClass() {
       if (this.producto.stock === 0) return 'stock-agotado'
@@ -120,6 +133,11 @@ export default {
     },
     contactarAsesor() {
       alert(`Contactando asesor para ${this.producto.nombre}...`)
+    },
+    manejarErrorImagen(event) {
+      console.error(`Error cargando imagen para ${this.producto.nombre}:`, event.target.src)
+      event.target.style.display = 'none'
+      this.imagenCargada = false
     }
   },
   mounted() {
@@ -221,6 +239,29 @@ export default {
   width: 100%;
   height: 300px;
   object-fit: cover;
+  background: linear-gradient(45deg, #0a0a0a, #1a1a2e);
+  display: block;
+}
+
+.imagen-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #0a0a0a, #1a1a2e);
+  border-radius: 15px;
+}
+
+.placeholder-text {
+  color: #00ffff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px #00ffff;
+  animation: pulse 2s infinite;
 }
 
 .imagen-scan {
@@ -423,6 +464,11 @@ export default {
   0% { bottom: 0; opacity: 0; }
   50% { opacity: 1; }
   100% { bottom: 100%; opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 @media (max-width: 768px) {

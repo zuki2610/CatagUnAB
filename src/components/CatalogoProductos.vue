@@ -118,7 +118,7 @@ export default {
           id: 1,
           nombre: 'Arc Reactor Mark V',
           precio: 2500000,
-          imagen: '/src/img/reactorarc.jpg',
+          imagen: '/img/reactorarc.jpg',
           stock: 5,
           descripcion: 'Reactor de fusión compacto de nueva generación',
           oferta: true,
@@ -128,7 +128,7 @@ export default {
           id: 2,
           nombre: 'Repulsor Gauntlet',
           precio: 1800000,
-          imagen: '/src/img/guantelete.jpg',
+          imagen: '/img/guantelete.jpg',
           stock: 0,
           descripcion: 'Guantelete con tecnología repulsora avanzada',
           oferta: false,
@@ -138,7 +138,7 @@ export default {
           id: 3,
           nombre: 'J.A.R.V.I.S. Core',
           precio: 3200000,
-          imagen: '/src/img/jarvis.jpg',
+          imagen: '/img/jarvis.jpg',
           stock: 3,
           descripcion: 'Sistema de inteligencia artificial avanzado',
           oferta: false,
@@ -148,7 +148,7 @@ export default {
           id: 4,
           nombre: 'Iron Man Helmet',
           precio: 950000,
-          imagen: '/src/img/casco.jpg',
+          imagen: '/img/casco.jpg',
           stock: 8,
           descripcion: 'Casco con HUD integrado y sistemas de comunicación',
           oferta: true,
@@ -158,7 +158,7 @@ export default {
           id: 5,
           nombre: 'Quantum Stabilizer',
           precio: 4200000,
-          imagen: '/src/img/estabilizador.png',
+          imagen: '/img/estabilizador.png',
           stock: 2,
           descripcion: 'Estabilizador cuántico para viajes temporales',
           oferta: false,
@@ -168,7 +168,7 @@ export default {
           id: 6,
           nombre: 'Nano Tech Suit',
           precio: 5500000,
-          imagen: '/src/img/suit.jpg',
+          imagen: '/img/suit.jpg',
           stock: 1,
           descripcion: 'Traje de nanotecnología autorreparable',
           oferta: true,
@@ -454,7 +454,7 @@ export default {
 
 .productos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
 }
@@ -552,6 +552,63 @@ export default {
     bottom: 1rem;
     right: 1rem;
     padding: 0.8rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .productos-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .catalogo-header {
+    padding: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .welcome-banner {
+    padding: 1rem;
+    margin-top: 0.8rem;
+  }
+  
+  .banner-title {
+    font-size: 1.3rem;
+  }
+  
+  .banner-text {
+    font-size: 0.9rem;
+  }
+  
+  .benefit {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .carrito-flotante {
+    bottom: 0.8rem;
+    right: 0.8rem;
+    left: 0.8rem;
+    padding: 0.6rem 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .carrito-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .carrito-count {
+    font-size: 1rem;
+  }
+  
+  .carrito-total {
+    font-size: 1rem;
   }
 }
 </style>

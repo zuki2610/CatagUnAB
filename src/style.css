@@ -11,6 +11,21 @@ body {
   color: #00ffff;
   min-height: 100vh;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Prevenir overflow horizontal en todos los elementos */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Asegurar que los contenedores principales no se salgan */
+#app {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Efectos de partículas de fondo */

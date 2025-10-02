@@ -679,10 +679,23 @@ export default {
     width: 100%;
   }
   
+  .carrito-header {
+    padding: 1rem;
+  }
+  
+  .carrito-titulo {
+    font-size: 1.3rem;
+  }
+  
+  .carrito-content {
+    padding: 0.8rem;
+  }
+  
   .carrito-item {
     flex-direction: column;
     text-align: center;
     gap: 0.8rem;
+    padding: 0.8rem;
   }
   
   .item-controls {
@@ -693,6 +706,90 @@ export default {
   
   .auth-buttons {
     flex-direction: column;
+  }
+  
+  .carrito-footer {
+    padding: 1rem;
+  }
+  
+  .btn-limpiar,
+  .btn-comprar,
+  .btn-invitado {
+    font-size: 0.8rem;
+    padding: 0.8rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carrito-header {
+    padding: 0.8rem;
+  }
+  
+  .carrito-titulo {
+    font-size: 1.1rem;
+  }
+  
+  .carrito-content {
+    padding: 0.6rem;
+  }
+  
+  .carrito-item {
+    padding: 0.6rem;
+    gap: 0.6rem;
+  }
+  
+  .item-imagen {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .item-nombre {
+    font-size: 0.8rem;
+  }
+  
+  .item-precio {
+    font-size: 0.75rem;
+  }
+  
+  .btn-cantidad {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+  
+  .cantidad-valor {
+    font-size: 0.8rem;
+  }
+  
+  .btn-eliminar {
+    width: 25px;
+    height: 25px;
+    font-size: 0.7rem;
+  }
+  
+  .carrito-footer {
+    padding: 0.8rem;
+  }
+  
+  .btn-limpiar,
+  .btn-comprar,
+  .btn-invitado {
+    font-size: 0.75rem;
+    padding: 0.7rem 1rem;
+  }
+  
+  .auth-titulo {
+    font-size: 0.9rem;
+  }
+  
+  .auth-descripcion {
+    font-size: 0.75rem;
+  }
+  
+  .btn-login-carrito,
+  .btn-registro-carrito {
+    font-size: 0.65rem;
+    padding: 0.5rem 0.8rem;
   }
 }
 </style>

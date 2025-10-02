@@ -133,7 +133,9 @@ export default {
   computed: {
     subtotal() {
       return this.carrito.reduce((total, producto, index) => {
-        return total + (producto.precio * this.cantidades[index])
+        const cantidad = this.cantidades[index] || 1
+        const precio = producto.precio || 0
+        return total + (precio * cantidad)
       }, 0)
     },
     impuestos() {
@@ -143,13 +145,13 @@ export default {
       return this.subtotal + this.impuestos
     },
     subtotalFormateado() {
-      return this.subtotal.toLocaleString()
+      return isNaN(this.subtotal) ? '0' : this.subtotal.toLocaleString()
     },
     impuestosFormateados() {
-      return this.impuestos.toLocaleString()
+      return isNaN(this.impuestos) ? '0' : this.impuestos.toLocaleString()
     },
     totalFormateado() {
-      return this.total.toLocaleString()
+      return isNaN(this.total) ? '0' : this.total.toLocaleString()
     }
   },
   methods: {
@@ -230,7 +232,11 @@ export default {
   watch: {
     carrito: {
       handler(newCarrito) {
-        this.cantidades = newCarrito.map(() => 1)
+        if (newCarrito && newCarrito.length > 0) {
+          this.cantidades = newCarrito.map(() => 1)
+        } else {
+          this.cantidades = []
+        }
       },
       immediate: true
     }

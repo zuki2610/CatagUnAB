@@ -37,7 +37,7 @@
           <div class="user-info">
             <img :src="sesion.foto" :alt="sesion.nombre" class="user-avatar" />
             <div class="user-details">
-              <span class="user-nombre">{{ sesion.nombre }}</span>
+              <span class="user-greeting">Hola, {{ sesion.nombre }}</span>
               <span class="user-empresa">{{ sesion.empresa }}</span>
             </div>
           </div>
@@ -424,11 +424,15 @@ export default {
   gap: 0.2rem;
 }
 
-.user-nombre {
+.user-greeting {
   color: #00ffff;
   font-weight: bold;
-  font-size: 1rem;
-  text-shadow: 0 0 10px #00ffff;
+  font-size: 1.1rem;
+  text-shadow: 0 0 15px #00ffff;
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .user-empresa {

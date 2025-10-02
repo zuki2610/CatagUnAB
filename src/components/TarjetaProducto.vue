@@ -468,6 +468,90 @@ export default {
   50% { opacity: 0.5; }
 }
 
+@media (max-width: 1024px) {
+  .tarjeta-producto {
+    padding: 1.5rem;
+    min-width: 350px;
+    width: 100%;
+  }
+  
+  .producto-imagen {
+    height: 200px;
+    min-height: 200px;
+  }
+  
+  .producto-imagen img {
+    min-height: 200px;
+  }
+  
+  .producto-nombre {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+  
+  .producto-descripcion {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+  
+  .precio-valor {
+    font-size: 1.8rem;
+  }
+  
+  .btn-agregar,
+  .btn-detalle {
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
+  }
+  
+  .stock-indicator {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .tarjeta-producto {
+    padding: 1.2rem;
+    min-width: 300px;
+    width: 100%;
+  }
+  
+  .producto-imagen {
+    height: 180px;
+    min-height: 180px;
+  }
+  
+  .producto-imagen img {
+    min-height: 180px;
+  }
+  
+  .producto-nombre {
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
+  
+  .producto-descripcion {
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
+  
+  .precio-valor {
+    font-size: 1.6rem;
+  }
+  
+  .btn-agregar,
+  .btn-detalle {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.2rem;
+  }
+  
+  .stock-indicator {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
 @media (max-width: 768px) {
   .tarjeta-producto {
     padding: 1rem;

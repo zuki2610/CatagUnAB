@@ -276,11 +276,18 @@ export default {
         }
         usuarios[usuarioIndex].compras.unshift(compra)
         localStorage.setItem('starkUsuarios', JSON.stringify(usuarios))
-        console.log('✅ Compra guardada en historial del usuario')
+        console.log('✅ Compra guardada en historial del usuario:', compra.id)
+        console.log('📊 Total de compras del usuario:', usuarios[usuarioIndex].compras.length)
+      } else {
+        console.error('❌ Usuario no encontrado para guardar compra')
       }
     },
     calcularTotal() {
-      return this.carrito.reduce((total, producto) => total + producto.precio, 0).toLocaleString()
+      const total = this.carrito.reduce((total, producto) => {
+        const precio = producto.precio || 0
+        return total + precio
+      }, 0)
+      return isNaN(total) ? '0' : total.toLocaleString()
     }
   }
 }
@@ -454,9 +461,10 @@ export default {
 
 .productos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 450px);
   gap: 2rem;
   margin-bottom: 3rem;
+  justify-content: center;
 }
 
 .carrito-flotante {
@@ -503,6 +511,22 @@ export default {
   color: #00ffff;
   font-weight: 600;
   font-size: 1.1rem;
+}
+
+@media (max-width: 1024px) {
+  .productos-grid {
+    grid-template-columns: repeat(3, 400px);
+    gap: 1rem;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .productos-grid {
+    grid-template-columns: repeat(3, 350px);
+    gap: 0.8rem;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 768px) {

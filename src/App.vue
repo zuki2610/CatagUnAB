@@ -57,9 +57,10 @@
     
     <main class="main-content">
       <CatalogoProductos 
-        :usuario="sesion" 
+        :usuario="usuarioCompleto" 
         @mostrar-login="mostrarLogin = true"
         @mostrar-registro="mostrarRegistro = true"
+        @compra-guardada="manejarCompraGuardada"
       />
     </main>
     
@@ -154,6 +155,11 @@ export default {
       this.sesion.nombre = usuario.nombre
       this.sesion.foto = usuario.foto
       console.log('✅ Usuario actualizado:', usuario.nombre)
+    },
+    manejarCompraGuardada(usuarioActualizado) {
+      this.usuarioCompleto = usuarioActualizado
+      console.log('🛒 Compra guardada, usuario actualizado en App.vue')
+      console.log('📊 Nuevas compras del usuario:', usuarioActualizado.compras?.length || 0)
     },
     abrirPerfil() {
       console.log('🟢 Abriendo perfil de usuario')

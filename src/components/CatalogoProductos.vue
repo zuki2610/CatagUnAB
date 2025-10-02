@@ -108,6 +108,18 @@ export default {
       default: null
     }
   },
+  mounted() {
+    console.log('🏪 CatalogoProductos - MOUNTED')
+    console.log('👤 Usuario recibido como prop:', this.usuario)
+  },
+  watch: {
+    usuario: {
+      handler(newUsuario) {
+        console.log('👤 Usuario cambió:', newUsuario)
+      },
+      immediate: true
+    }
+  },
   data() {
     return {
       productoSeleccionado: null,
@@ -228,7 +240,8 @@ export default {
       console.log('Carrito limpiado completamente')
     },
     procesarCompra(datosCompra) {
-      console.log('Compra procesada:', datosCompra)
+      console.log('🛒 PROCESANDO COMPRA:', datosCompra)
+      console.log('👤 Usuario actual:', this.usuario)
       
       // Crear registro de compra
       const nuevaCompra = {
@@ -245,9 +258,14 @@ export default {
         estado: 'completado'
       }
       
+      console.log('📦 Nueva compra creada:', nuevaCompra)
+      
       // Guardar compra en el usuario si está logueado
       if (this.usuario) {
+        console.log('✅ Usuario logueado, guardando compra...')
         this.guardarCompraEnUsuario(nuevaCompra)
+      } else {
+        console.log('❌ Usuario no logueado, no se guardará la compra')
       }
       
       this.carrito = []
@@ -267,19 +285,33 @@ export default {
       alert('¡Compra como invitado procesada exitosamente! J.A.R.V.I.S. ha confirmado su pedido.\n\nNota: Esta compra no se guardará en tu historial. Te recomendamos crear una cuenta para futuras compras.')
     },
     guardarCompraEnUsuario(compra) {
+      console.log('💾 GUARDANDO COMPRA EN USUARIO:', compra)
+      console.log('👤 Usuario ID:', this.usuario?.id)
+      
       const usuarios = JSON.parse(localStorage.getItem('starkUsuarios') || '[]')
+      console.log('📋 Usuarios en localStorage:', usuarios.length)
+      
       const usuarioIndex = usuarios.findIndex(u => u.id === this.usuario.id)
+      console.log('🔍 Índice del usuario encontrado:', usuarioIndex)
       
       if (usuarioIndex !== -1) {
         if (!usuarios[usuarioIndex].compras) {
           usuarios[usuarioIndex].compras = []
+          console.log('📝 Inicializando array de compras para usuario')
         }
+        
         usuarios[usuarioIndex].compras.unshift(compra)
         localStorage.setItem('starkUsuarios', JSON.stringify(usuarios))
+        
         console.log('✅ Compra guardada en historial del usuario:', compra.id)
         console.log('📊 Total de compras del usuario:', usuarios[usuarioIndex].compras.length)
+        console.log('💾 Datos guardados en localStorage:', usuarios[usuarioIndex])
+        
+        // Emitir evento para actualizar el usuario en el perfil
+        this.$emit('compra-guardada', usuarios[usuarioIndex])
       } else {
         console.error('❌ Usuario no encontrado para guardar compra')
+        console.error('🔍 Usuarios disponibles:', usuarios.map(u => ({ id: u.id, nombre: u.nombre })))
       }
     },
     calcularTotal() {

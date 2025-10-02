@@ -151,6 +151,10 @@
               <div class="vacio-icon">🛒</div>
               <h3 class="vacio-titulo">No hay compras registradas</h3>
               <p class="vacio-descripcion">Tus compras aparecerán aquí una vez que realices tu primera compra.</p>
+              <button class="btn-prueba-compra" @click="simularCompra">
+                <span class="btn-text">SIMULAR COMPRA (PRUEBA)</span>
+                <div class="btn-glow"></div>
+              </button>
             </div>
             <div v-else class="compras-list">
               <div 
@@ -450,9 +454,65 @@ export default {
         month: 'long',
         day: 'numeric'
       })
+    },
+    simularCompra() {
+      if (!this.usuario) return
+      
+      const compraSimulada = {
+        id: Date.now().toString(),
+        fecha: new Date().toISOString(),
+        productos: [
+          {
+            id: 1,
+            nombre: 'Arc Reactor Mark V',
+            precio: 2500000,
+            imagen: '/img/reactorarc.jpg',
+            cantidad: 1
+          }
+        ],
+        total: 2500000,
+        estado: 'completado'
+      }
+      
+      console.log('🧪 SIMULANDO COMPRA:', compraSimulada)
+      
+      // Agregar compra al usuario
+      if (!this.usuario.compras) {
+        this.usuario.compras = []
+      }
+      this.usuario.compras.unshift(compraSimulada)
+      
+      // Guardar en localStorage
+      const usuarios = JSON.parse(localStorage.getItem('starkUsuarios') || '[]')
+      const usuarioIndex = usuarios.findIndex(u => u.id === this.usuario.id)
+      if (usuarioIndex !== -1) {
+        usuarios[usuarioIndex] = this.usuario
+        localStorage.setItem('starkUsuarios', JSON.stringify(usuarios))
+        console.log('✅ Compra simulada guardada')
+        
+        // Emitir evento para actualizar en App.vue
+        this.$emit('usuario-actualizado', this.usuario)
+      }
+    }
+  },
+  watch: {
+    usuario: {
+      handler(newUsuario) {
+        console.log('👤 Usuario cambió en PerfilUsuario:', newUsuario)
+        console.log('🛒 Compras del usuario:', newUsuario?.compras?.length || 0)
+        if (newUsuario?.compras) {
+          console.log('📋 Lista de compras:', newUsuario.compras)
+        }
+      },
+      immediate: true,
+      deep: true
     }
   },
   mounted() {
+    console.log('👤 PerfilUsuario - MOUNTED')
+    console.log('🛒 Usuario inicial:', this.usuario)
+    console.log('📊 Compras iniciales:', this.usuario?.compras?.length || 0)
+    
     // Cargar configuración guardada
     if (this.usuario?.configuracion) {
       this.configuracion = { ...this.configuracion, ...this.usuario.configuracion }
@@ -904,6 +964,43 @@ export default {
 .vacio-descripcion {
   color: #888;
   font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.btn-prueba-compra {
+  background: linear-gradient(45deg, #ff6b00, #ff8c00);
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  color: #000;
+  font-family: 'Orbitron', monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.btn-prueba-compra:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 107, 0, 0.3);
+}
+
+.btn-prueba-compra .btn-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-prueba-compra:hover .btn-glow {
+  left: 100%;
 }
 
 .compras-list {

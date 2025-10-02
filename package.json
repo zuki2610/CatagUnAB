@@ -1,0 +1,18 @@
+{
+  "name": "catalogo-stark-industries",
+  "version": "1.0.0",
+  "description": "Catálogo interactivo inspirado en Stark Industries",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.4.5"
+  }
+}
